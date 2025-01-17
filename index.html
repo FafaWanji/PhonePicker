@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Picker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Phone Picker</h1>
+    <form id="phone-form">
+        <label>
+            <input type="checkbox" name="feature" value="5g"> 5G
+        </label>
+        <label>
+            <input type="checkbox" name="feature" value="wireless-charging"> Wireless Charging
+        </label>
+        <label>
+            <input type="checkbox" name="feature" value="waterproof"> Waterproof
+        </label>
+        <label>
+            <input type="checkbox" name="feature" value="dual-sim"> Dual SIM
+        </label>
+        <button type="button" onclick="showPhone()">Show Phone</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        function showPhone() {
+            const checkboxes = document.querySelectorAll('input[name="feature"]:checked');
+            let selectedFeatures = [];
+            checkboxes.forEach((checkbox) => {
+                selectedFeatures.push(checkbox.value);
+            });
+
+            let phone = "No phone matches your criteria.";
+            if (selectedFeatures.includes("5g") && selectedFeatures.includes("wireless-charging")) {
+                phone = "Phone A";
+            } else if (selectedFeatures.includes("waterproof") && selectedFeatures.includes("dual-sim")) {
+                phone = "Phone B";
+            }
+
+            document.getElementById("result").innerText = phone;
+        }
+    </script>
+</body>
+</html>
